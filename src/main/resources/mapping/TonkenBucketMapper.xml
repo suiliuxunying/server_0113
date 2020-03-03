@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shao.file_service.mapper.TonkenBucketMapper" >
+  <resultMap id="BaseResultMap" type="com.shao.file_service.model.TonkenBucket" >
+    <id column="BUCKET_NAME" property="bucketName" jdbcType="VARCHAR" />
+    <id column="TARGET_TOKEN" property="targetToken" jdbcType="VARCHAR" />
+    <result column="AUTH_TIME" property="authTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BUCKET_NAME, TARGET_TOKEN, AUTH_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.shao.file_service.model.TonkenBucketKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from service_auth
+    where BUCKET_NAME = #{bucketName,jdbcType=VARCHAR}
+      and TARGET_TOKEN = #{targetToken,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.shao.file_service.model.TonkenBucketKey" >
+    delete from service_auth
+    where BUCKET_NAME = #{bucketName,jdbcType=VARCHAR}
+      and TARGET_TOKEN = #{targetToken,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shao.file_service.model.TonkenBucket" >
+    insert into service_auth (BUCKET_NAME, TARGET_TOKEN, AUTH_TIME
+      )
+    values (#{bucketName,jdbcType=VARCHAR}, #{targetToken,jdbcType=VARCHAR}, #{authTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shao.file_service.model.TonkenBucket" >
+    insert into service_auth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bucketName != null" >
+        BUCKET_NAME,
+      </if>
+      <if test="targetToken != null" >
+        TARGET_TOKEN,
+      </if>
+      <if test="authTime != null" >
+        AUTH_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bucketName != null" >
+        #{bucketName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetToken != null" >
+        #{targetToken,jdbcType=VARCHAR},
+      </if>
+      <if test="authTime != null" >
+        #{authTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shao.file_service.model.TonkenBucket" >
+    update service_auth
+    <set >
+      <if test="authTime != null" >
+        AUTH_TIME = #{authTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BUCKET_NAME = #{bucketName,jdbcType=VARCHAR}
+      and TARGET_TOKEN = #{targetToken,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shao.file_service.model.TonkenBucket" >
+    update service_auth
+    set AUTH_TIME = #{authTime,jdbcType=TIMESTAMP}
+    where BUCKET_NAME = #{bucketName,jdbcType=VARCHAR}
+      and TARGET_TOKEN = #{targetToken,jdbcType=VARCHAR}
+  </update>
+</mapper>

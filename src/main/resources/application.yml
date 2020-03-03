@@ -1,0 +1,76 @@
+server: 
+    port: 9090
+    servlet:
+        application-display-name: 
+        context-path: /file_service
+
+
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
+mybatis:
+  mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径(相对于这个文件的路劲，xml放在resouce文件夹下)
+  type-aliases-package: com.shao.file_service.model  # 注意：对应实体类的路径
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+spring:
+  application:
+    name: file_service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/hos?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    username: root
+    password:
+    hikari:
+      # 是否自动提交
+      auto-commit: true
+      # 如果在没有连接可用的情况下超过此时间，则将抛出SQLException
+      connection-timeout: 30000
+      # 控制允许连接在池中空闲的最长时间
+      idle-timeout: 600000
+      # 控制池中连接的最长生命周期。使用中的连接永远不会退役，只有当它关闭时才会被删除
+      max-lifetime: 1800000
+      # 如果您的驱动程序支持JDBC4，强烈建议不要设置此属性
+      # connection-test-query:
+      # 控制HikariCP尝试在池中维护的最小空闲连接数。建议不要设置此值，而是允许HikariCP充当固定大小的连接池。 默认值：与maximumPoolSize相同
+      # minimum-idle:
+      # 此属性控制允许池到达的最大大小，包括空闲和正在使用的连接。
+      maximum-pool-size: 10
+      
+
+
+# spring:
+#   datasource:
+#     name: mysql_test
+#     type: com.alibaba.druid.pool.DruidDataSource
+#     #druid相关配置
+#     druid:
+#       #监控统计拦截的filters
+#       filters: stat
+#       driver-class-name: com.mysql.jdbc.Driver
+#       #基本属性
+#       url: jdbc:mysql://localhost:3306/hos?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+#       username: root
+#       password:
+#       #配置初始化大小/最小/最大
+#       initial-size: 1
+#       min-idle: 1
+#       max-active: 20
+#       #获取连接等待超时时间
+#       max-wait: 60000
+#       #间隔多久进行一次检测，检测需要关闭的空闲连接
+#       time-between-eviction-runs-millis: 60000
+#       #一个连接在池中最小生存的时间
+#       min-evictable-idle-time-millis: 300000
+#       validation-query: SELECT 'x'
+#       test-while-idle: true
+#       test-on-borrow: false
+#       test-on-return: false
+#       #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+#       pool-prepared-statements: false
+#       max-pool-prepared-statement-per-connection-size: 20

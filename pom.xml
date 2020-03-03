@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!--声明项目描述符遵循哪一个POM模型版本。模型本身的版本很少改变，
+	虽然如此，但它仍然是必不可少的，这是为了当Maven引入了新的特性或者
+	其他模型变更的时候，确保稳定性。 -->
+	<modelVersion>4.0.0</modelVersion>
+	<!--父项目的坐标。如果项目中没有规定某个元素的值，那么父项目中的对应值即为项目的默认值。 坐标包括group ID，artifact ID和 
+	version。 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<!--项目的全球唯一标识符，通常使用全限定的包名区分该项目和其他项目。并且构建时生成的路径也是由此生成，
+	 如com.mycompany.app生成的相对路径为：/com/mycompany/app -->
+	<groupId>com.shao</groupId>
+	<!-- 构件的标识符，它和group ID一起唯一标识一个构件。换句话说，你不能有两个不同的项目拥有同样的artifact ID和groupID；在某个 
+    特定的group ID下，artifact ID也必须是唯一的。构件是项目产生的或使用的一个东西，Maven为项目产生的构件包括：JARs，源 码，二进制发布和WARs等。 -->
+	<artifactId>file_service</artifactId>
+	<!--项目当前版本，格式为:主版本.次版本.增量版本-限定版本号 -->
+	<version>0.0.1-SNAPSHOT</version>
+	<!--项目的名称, Maven产生的文档用 -->
+	<name>demo</name>
+	<url>http://localhost:9090/file_service</url>
+	<description>Demo project for Spring Boot</description>
+    <!--描述了这个项目构建环境中的前提条件。 -->
+    <prerequisites>
+        <!--构建该项目或使用该插件所需要的Maven的最低版本 -->
+        <maven />
+	</prerequisites>
+	
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+ <!--该元素描述了项目相关的所有依赖。 这些依赖组成了项目构建过程中的一个个环节。
+	它们自动从项目定义的仓库中下载。要获取更多信息，请看项目依赖机制。 -->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- 热部署 一般只使用于开发环境，在生产环境是需要禁用的，所以得设置 optional=false( -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- 自动生成get,set等 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.8</version>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- <dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency> -->
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.40</version>
+		  </dependency>
+		<!-- 逆向工程 -->
+		<dependency>
+		  <groupId>org.mybatis.generator</groupId>
+		  <artifactId>mybatis-generator-core</artifactId>
+		  <version>1.3.2</version>
+		</dependency>
+
+	 	<!-- 分页插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+
+		<!-- spring boot 整合pagehelper依赖包-->  
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+		<!--json-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
+		</dependency>
+
+		<!-- 连接池 -->
+		<!-- <dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.9</version>
+		</dependency> -->
+
+		  <!-- 引入HikariCP数据库连接池 -->
+        <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
+	</dependencies>
+
+	<!--构建项目需要的信息 -->
+	<build>
+		 <!--使用的插件列表 -->
+		<plugins>
+			<!--plugin元素包含描述插件所需要的信息。 -->
+			<plugin>
+				 <!--插件在仓库里的group ID -->
+				<groupId>org.springframework.boot</groupId>
+				 <!--插件在仓库里的artifact ID -->
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--被使用的插件的版本（或版本范围） -->
+				<!-- <version /> -->
+			</plugin>
+			<!-- 逆向工程 -->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<configuration>
+					<configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+					<overwrite>true</overwrite>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
