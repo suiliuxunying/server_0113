@@ -41,8 +41,14 @@ spring:
       # minimum-idle:
       # 此属性控制允许池到达的最大大小，包括空闲和正在使用的连接。
       maximum-pool-size: 10
-      
 
+# 自定义参数 
+# constant: 
+#   code: 
+#     IllegalToken: 50008
+#     OtherClientsLoggedIn: 50012
+#     TokenExpired: 50014
+#     correct: 2000
 
 # spring:
 #   datasource:

@@ -49,11 +49,11 @@ public class UserService implements UserServiceInterface {
         return userMapper.updateByPrimaryKey(record);
     }
 
-    @Override
-    public User getUserInfoDyId(final String userId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    // @Override
+    // public User getUserInfoDyId(final String userId) {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
 
 
 }

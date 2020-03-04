@@ -19,6 +19,6 @@ public interface UserServiceInterface {
 
     int updateByPrimaryKey(User record);
 
-    public User getUserInfoDyId(String userId);
+    // public User getUserInfoDyId(String userId);
     
 }
