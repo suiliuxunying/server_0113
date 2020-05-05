@@ -32,10 +32,10 @@ public class UserController {
     TokenService tokenService;
     //登录
     @PostMapping("/login")
-    public Object login(@RequestBody final User user) {
-        final JSONObject jsonObject = new JSONObject();
+    public Object login(@RequestBody  User user) {
+        JSONObject jsonObject = new JSONObject();
         System.out.print(user);
-        final User userForBase = userService.selectByPrimaryKey(user.getUserId());
+        User userForBase = userService.selectByPrimaryKey(user.getUserId());
         if (userForBase == null) {
             jsonObject.put("code", Constant.CODE_Other);
             jsonObject.put("message", "登录失败,用户不存在");
@@ -46,7 +46,7 @@ public class UserController {
                 jsonObject.put("message", "登录失败,密码错误");
                 return jsonObject;
             } else {
-                final String token = tokenService.getToken(userForBase);
+                String token = tokenService.getToken(userForBase);
                 jsonObject.put("code", Constant.CODE_Correct);
                 jsonObject.put("token", token);
                 jsonObject.put("user", userForBase);
@@ -62,17 +62,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public User getUserInfo(@RequestBody final JSONObject jsonObject) {
+    public User getUserInfo(@RequestBody  JSONObject jsonObject) {
 
-        final JSONObject userDate = jsonObject.getJSONObject("data");
-        final String type = jsonObject.getString("type");
-        final User user = JSONObject.toJavaObject(userDate, User.class);
+         JSONObject userDate = jsonObject.getJSONObject("data");
+         String type = jsonObject.getString("type");
+         User user = JSONObject.toJavaObject(userDate, User.class);
         System.out.println(user.toString() + "  type:" + type);
         return userService.selectByPrimaryKey(user.getUserId());
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public User test(@RequestBody final JSONObject jsonObject) {
+    public User test(@RequestBody  JSONObject jsonObject) {
         System.out.println(jsonObject); 
         
         return userService.selectByPrimaryKey("1");

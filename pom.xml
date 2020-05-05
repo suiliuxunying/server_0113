@@ -30,11 +30,13 @@
         <!--构建该项目或使用该插件所需要的Maven的最低版本 -->
         <maven />
 	</prerequisites>
-	
+
 	<properties>
 		<java.version>1.8</java.version>
+		<scala.version>2.11</scala.version>
+		<spark.version>2.2.0</spark.version>
 	</properties>
-
+	
  <!--该元素描述了项目相关的所有依赖。 这些依赖组成了项目构建过程中的一个个环节。
 	它们自动从项目定义的仓库中下载。要获取更多信息，请看项目依赖机制。 -->
 	<dependencies>
