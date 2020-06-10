@@ -63,13 +63,27 @@ public class SimulsteDataController {
 				return jsonObject;
 	}
 
+	@PostMapping(value="/sDataMakeCurve2")
+	public Object sDataMakeCurve2(@RequestBody JSONObject data) throws InterruptedException {
+			  System.err.println(data);
+        String path=data.getString("path");
+        String keyValue=data.getString("keyValue");
+        int step = data.getIntValue("step");
+        // path="C:/Users/10703/Desktop/aa.txt";
+        List<FuelData> list = simulsteDataService.sDataMakeCurve2(path, step, keyValue);
+        JSONObject jsonObject =new JSONObject();
+				jsonObject.put("code", Constant.CODE_Correct);
+				jsonObject.put("list", list);
+				return jsonObject;
+	}
+
     // void sDataMakeCurve(String fileDri,int fileType);
     // void sDataContrast();
     // void sDataSparkMl();
 
 	@PostMapping(value="/getFileName")
 	public Object getFileName(@RequestBody JSONObject data)  {
-		String[] fileNameList={"aa.txt","bb.txt","cc.txt"};
+		String[] fileNameList={"aa.txt","bb.txt","cc.txt","mm.txt"};
 		JSONObject jsonObject =new JSONObject();
 		jsonObject.put("code", Constant.CODE_Correct);
 		jsonObject.put("fileNameList", fileNameList);

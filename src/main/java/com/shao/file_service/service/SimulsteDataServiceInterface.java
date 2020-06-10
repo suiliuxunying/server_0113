@@ -12,6 +12,7 @@ public interface SimulsteDataServiceInterface {
     FuelData sDataRealTime(int i);
     FuelData sDataRealTime(FuelData fuelData);
     List<FuelData> sDataMakeCurve(String Path, int step, String keyValue) throws InterruptedException;
+    List<FuelData> sDataMakeCurve2(String Path, int step, String keyValue) throws InterruptedException;
     void sDataContrast();
     void sDataSparkMl();
 

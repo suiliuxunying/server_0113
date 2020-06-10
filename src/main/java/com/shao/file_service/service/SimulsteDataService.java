@@ -26,6 +26,10 @@ public class SimulsteDataService implements SimulsteDataServiceInterface {
 	public List<FuelData> sDataMakeCurve(String Path, int step, String keyValue) throws InterruptedException {
 		return new MakeCurve().makeCurve(Path, step, keyValue);
 	}
+	@Override
+	public List<FuelData> sDataMakeCurve2(String Path, int step, String keyValue) throws InterruptedException {
+		return new MakeCurve().makeCurve2(Path, step, keyValue);
+	}
 
 	@Override
 	public void sDataContrast() {
