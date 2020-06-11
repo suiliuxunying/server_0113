@@ -98,13 +98,14 @@ public class MakeCurve {
                 blist[i] = Double.parseDouble(slist[i]);
             }
             //定步长截取
+
             //第一个进去
             if(count==0){
                 this.list.add(new FuelData(blist));
-            }else if (count==step/3){
+            }else if (count==(step/3)){
                 for(int i=0;i<length;i++) minlist[i]=maxlist[i]=blist[i];
             }
-            else if (count==step/3*2){
+            else if (count==(step/3*2)){
                 for(int i=0;i<length;i++) minlist[i]=maxlist[i]=blist[i];
             }
             this.count++;
