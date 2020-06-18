@@ -12,6 +12,7 @@ import com.shao.file_service.utils.Function;
 import com.shao.file_service.other.dataBean.FuelData;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class SimulsteDataController {
 	@Autowired
 	SimulsteDataService simulsteDataService;
-
+	@Value("${basePath}")
+	String basePath;
 	@PostMapping(value="/sDataRealTime")
 	public Object sDataRealTime(@RequestBody JSONObject data) throws Exception {
 		// interval FuelData 
@@ -55,7 +57,9 @@ public class SimulsteDataController {
         String path=data.getString("path");
         String keyValue=data.getString("keyValue");
         int step = data.getIntValue("step");
-        // path="C:/Users/10703/Desktop/aa.txt";
+				// path="C:/Users/10703/Desktop/aa.txt";
+				System.err.println(basePath + path);
+        // List<FuelData> list = simulsteDataService.sDataMakeCurve(basePath + path, step, keyValue);
         List<FuelData> list = simulsteDataService.sDataMakeCurve(path, step, keyValue);
         JSONObject jsonObject =new JSONObject();
 				jsonObject.put("code", Constant.CODE_Correct);
@@ -70,7 +74,8 @@ public class SimulsteDataController {
         String keyValue=data.getString("keyValue");
         int step = data.getIntValue("step");
         // path="C:/Users/10703/Desktop/aa.txt";
-        List<FuelData> list = simulsteDataService.sDataMakeCurve2(path, step, keyValue);
+        List<FuelData> list = simulsteDataService.sDataMakeCurve2( path, step, keyValue);
+        // List<FuelData> list = simulsteDataService.sDataMakeCurve2(basePath + path, step, keyValue);
         JSONObject jsonObject =new JSONObject();
 				jsonObject.put("code", Constant.CODE_Correct);
 				jsonObject.put("list", list);

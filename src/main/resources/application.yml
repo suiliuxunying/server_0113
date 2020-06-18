@@ -23,9 +23,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/hos?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://marathonlb.com:10001/hos?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
     username: root
-    password:
+    password: 123456
     hikari:
       # 是否自动提交
       auto-commit: true
@@ -80,3 +80,5 @@ spring:
 #       #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
 #       pool-prepared-statements: false
 #       max-pool-prepared-statement-per-connection-size: 20
+#参数
+basePath: C:/Users/10703/Desktop/
